@@ -1,220 +1,182 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap');
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
+body, html {
   font-family: 'EB Garamond', serif;
-  background-color: #fef6e4; /* Soft cream */
-  color: #5a4a42; /* Dark warm gray */
+  background-color: #0f0f0f;
+  color: #f3f1e8;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  scroll-behavior: smooth;
 }
 
-.container {
-  display: flex;
-  max-width: 1200px;
-  width: 100%;
-  background-color: #f8f5f0; /* Off-white warm */
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(90, 74, 66, 0.15); /* softer shadow */
-}
-
-.main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.left {
-  flex: 1;
-}
-
-.left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.right {
-  flex: 1;
-  padding: 60px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.right h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: #d98c74; /* Soft coral */
-}
-
-.right h2 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-  font-weight: 400;
-  color: #a68b7b; /* Muted warm taupe */
-}
-
-.right p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 30px;
-  color: #6f5e4e; /* Medium warm brown */
-}
-
-.right a {
-  display: inline-block;
-  padding: 12px 24px;
-  border: 1px solid #d98c74;
-  border-radius: 8px;
-  color: #d98c74;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-
-.right a:hover {
-  background-color: #d98c74;
-  color: #f8f5f0; /* Off-white text on hover */
-}
-
-@media(max-width: 900px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .right {
-    padding: 30px 20px;
-    text-align: center;
-  }
-
-  .right h1 {
-    font-size: 2.4rem;
-  }
-
-  .right p {
-    font-size: 1rem;
-  }
-}
-
-.footer {
-  background-color: #f8f5f0; /* Off-white footer */
-  color: #6f5e4e;
-  text-align: center;
-  padding: 20px;
-  font-size: 1rem;
-  border-top: 1px solid #d98c74;
-}
-
-
-
-/* NAVIGATION BAR */
-
+/* Navbar */
 .navbar {
-  /* background-color: #0a0a0a; */
-  padding: 16px 40px;
-  border-bottom: 1px solid #cba135;
-  color:#cba135;
+  background-color: #121212;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  font-family: 'EB Garamond', serif;
-  color: #cba135;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  color: #d4af37;
+  font-weight: 600;
 }
 
+/* Navigation */
 .nav-menu {
-  list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 2rem;
+  list-style: none;
 }
 
 .nav-item {
   position: relative;
-  color: #070707;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
 .nav-item span {
-  padding: 8px 12px;
-  display: inline-block;
-    color:#181818;
-
+  font-size: 1.1rem;
+  color: #f3f1e8;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-.nav-item:hover span {
-  color: #cba135;
+.nav-item span:hover {
+  color: #d4af37;
 }
 
+/* Dropdown */
 .dropdown {
-  display: none;
   position: absolute;
-  top: 40px;
-  background-color: #1c1c1c;
-  border: 1px solid #cba135;
-  border-radius: 6px;
-  min-width: 150px;
-  z-index: 1000;
-}
-
-.nav-item:hover .dropdown {
-  display: block;
+  top: 100%;
+  left: 0;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  display: none;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  min-width: 200px;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .dropdown li {
   list-style: none;
+  border-bottom: 1px solid #333;
 }
 
-.dropdown li a {
-  display: block;
-  padding: 10px 16px;
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
+.dropdown a {
+  color: #f3f1e8;
   text-decoration: none;
-  color: #e6e1d3;
-  transition: background-color 0.2s ease;
+  padding: 0.75rem 1rem;
+  display: block;
+  transition: background 0.3s, color 0.3s;
 }
 
-.dropdown li a:hover {
-  background-color: #2a2a2a;
-  color: #cba135;
+.dropdown a:hover {
+  background-color: #d4af37;
+  color: #0f0f0f;
 }
 
-/* Optional: Responsive tweaks */
-@media(max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.nav-item:hover .dropdown {
+  display: flex;
+}
 
+/* Main Section */
+.main {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.main h1 {
+  font-size: 3rem;
+  color: #d4af37;
+  margin-bottom: 1rem;
+}
+
+.main p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #1f1f1f;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* Dynamic link */
+a[href*="pentusHealthPortal"] {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #d4af37;
+  color: #121212;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+a[href*="pentusHealthPortal"]:hover {
+  background-color: #b4902f;
+}
+
+/* Footer */
+.footer {
+  background-color: #121212;
+  padding: 1rem 0;
+  text-align: center;
+  color: #d4af37;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 4rem;
+  font-size: 0.95rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .nav-menu {
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+
+  .main h1 {
+    font-size: 2.2rem;
+  }
+
+  .main p {
+    font-size: 1rem;
   }
 
   .dropdown {
-    position: static;
-    border: none;
-    box-shadow: none;
-    padding-left: 10px;
+    position: relative;
+    top: auto;
+    left: auto;
+    min-width: 100%;
   }
 }

@@ -3,60 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Essence of Nischay</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <title>Nischay</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="navbar">
-  <div class="nav-container">
-    <h2 class="logo">Nischay</h2>
-    <nav>
-      <ul class="nav-menu">
-        <li class="nav-item">
-          <span>Home</span>
-          <ul class="dropdown">
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=section-a">Section A</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=section-b">Section B</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=section-c">Section C</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=section-d">Section D</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=section-e">Section E</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <span>Location</span>
-          <ul class="dropdown">
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=delhi">Delhi</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=mumbai">Mumbai</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=bangalore">Bangalore</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=chennai">Chennai</a></li>
-            <li><a href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=kolkata">Kolkata</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
+  <header class="navbar">
+    <div class="nav-container">
+      <h2 class="logo">Nischay</h2>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <span>Home</span>
+            <ul class="dropdown">
+              <li><a href="/section-a">Section A</a></li>
+              <li><a href="/nischay/section-b">Section B</a></li>
+              <li><a href="/nischay/section-c">Section C</a></li>
+              <li><a href="/nischay/section-d">Section D</a></li>
+              <li><a href="/nischay/section-e">Section E</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <span>Location</span>
+            <ul class="dropdown">
+              <li><a href="#bangalore">Bangalore</a></li>
+              <li><a href="#delhi">Delhi</a></li>
+              <li><a href="/nischay/mumbai">Mumbai</a></li>
+              <li><a href="/nischay/chennai">Chennai</a></li>
+              <li><a href="/nischay/kolkata">Kolkata</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <main class="main">
-    <div class="container">
-      <div class="left">
-        <img src="photo.jpg" alt="Nischay Image">
-         
-      </div>
-      <div class="right">
-        <h1>Welcome !!</h1>
-        <p>Click below to open New Patient - Appointment Request Form</p>
-        <a href="https://power-innovation-8457--developer.sandbox.my.site.com/IntakeForm" target="_blank">Explore More</a>
-      </div>
+    <div id="dynamic-content" class="container">
+      <h1>Welcome to Nischay</h1>
+      <p>Please select a section or location from the menu above.</p>
     </div>
   </main>
 
   <footer class="footer">
     <p>Thank you for visiting.</p>
   </footer>
-</body>
 
+  <script>
+  const content = document.getElementById('dynamic-content');
+
+  const validPaths = {
+    "bangalore": "Bangalore",
+    "delhi": "Delhi",
+    "mumbai": "Mumbai",
+    "chennai": "Chennai",
+    "kolkata": "Kolkata",
+    "section-a": "Section A",
+    "section-b": "Section B",
+    "section-c": "Section C",
+    "section-d": "Section D",
+    "section-e": "Section E"
+  };
+
+  function renderContent() {
+    const hash = window.location.hash.replace('#', '');
+    if (validPaths[hash]) {
+      content.innerHTML = `
+        <h1>${validPaths[hash]}</h1>
+        <p>Click the button below to go to the Intake Form.</p>
+        <a class="cta-button" href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=${hash}" target="_blank">Go to Form</a>
+      `;
+    } else {
+      content.innerHTML = `
+        <h1>Welcome to Nischay</h1>
+        <p>Please select a section or location from the menu above.</p>
+      `;
+    }
+  }
+
+  // Load content on initial load
+  window.addEventListener('load', renderContent);
+
+  // Listen to hash change (for when user clicks)
+  window.addEventListener('hashchange', renderContent);
+</script>
+
+</body>
 </html>
