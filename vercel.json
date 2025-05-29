@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/nischay/:path*", "destination": "/nischay/index.html" }
+  ]
+}
