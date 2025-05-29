@@ -2,87 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="origin-when-cross-origin" />
   <title>Nischay</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+    header.navbar {
+      background: #007bff;
+      color: white;
+      padding: 15px 30px;
+    }
+    .logo {
+      margin: 0;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    .nav-menu {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-item > span {
+      cursor: pointer;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      background: white;
+      list-style: none;
+      padding: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+    .dropdown li {
+      margin-bottom: 5px;
+    }
+    .dropdown li:last-child {
+      margin-bottom: 0;
+    }
+    .dropdown a {
+      text-decoration: none;
+      color: #333;
+    }
+    main {
+      padding: 30px;
+      text-align: center;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .cta-button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
   <header class="navbar">
-    <div class="nav-container">
-      <h2 class="logo">Nischay</h2>
-      <nav>
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <span>Sections</span>
-            <ul class="dropdown">
-              <li><a href="/section-a">Section A</a></li>
-              <li><a href="/nischay/section-b">Section B</a></li>
-              <li><a href="/nischay/section-c">Section C</a></li>
-              <li><a href="/nischay/section-d">Section D</a></li>
-              <li><a href="/nischay/section-e">Section E</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <span>Location</span>
-            <ul class="dropdown">
-              <li><a href="#bangalore">Bangalore</a></li>
-              <li><a href="/nischay/Delhi">Delhi</a></li>
-              <li><a href="hello.html">Mumbai</a></li>
-              <li><a href="/nischay/chennai">Chennai</a></li>
-              <li><a href="/nischay/kolkata">Kolkata</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <h2 class="logo">Nischay</h2>
+    <nav>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <span>Home</span>
+          <ul class="dropdown">
+            <li><a href="#section-a">Section A</a></li>
+            <li><a href="#section-b">Section B</a></li>
+            <li><a href="#section-c">Section C</a></li>
+            <li><a href="#section-d">Section D</a></li>
+            <li><a href="#section-e">Section E</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <span>Location</span>
+          <ul class="dropdown">
+            <li><a href="#bangalore">Bangalore</a></li>
+            <li><a href="#delhi">Delhi</a></li>
+            <li><a href="#mumbai">Mumbai</a></li>
+            <li><a href="#chennai">Chennai</a></li>
+            <li><a href="#kolkata">Kolkata</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="main">
-    <div id="dynamic-content" class="container">
-      <h1>Welcome to Nischay</h1>
-      <p>Please select a section or location from the menu above.</p>
-    </div>
+  <main id="dynamic-content">
+    <h1>Welcome to Nischay</h1>
+    <p>Please select a section or location from the menu above.</p>
   </main>
 
   <script>
-  const content = document.getElementById('dynamic-content');
+    const content = document.getElementById('dynamic-content');
 
-  const validPaths = {
-    "bangalore": "Bangalore",
-    "delhi": "Delhi",
-    "mumbai": "Mumbai",
-    "chennai": "Chennai",
-    "kolkata": "Kolkata",
-    "section-a": "Section A",
-    "section-b": "Section B",
-    "section-c": "Section C",
-    "section-d": "Section D",
-    "section-e": "Section E"
-  };
+    const validPaths = {
+      "bangalore": "Bangalore",
+      "delhi": "Delhi",
+      "mumbai": "Mumbai",
+      "chennai": "Chennai",
+      "kolkata": "Kolkata",
+      "section-a": "Section A",
+      "section-b": "Section B",
+      "section-c": "Section C",
+      "section-d": "Section D",
+      "section-e": "Section E"
+    };
 
-  function renderContent() {
-    const hash = window.location.hash.replace('#', '');
-    if (validPaths[hash]) {
-      content.innerHTML = `
-        <h1>${validPaths[hash]}</h1>
-        <p>Click the button below to go to the Intake Form.</p>
-        <a class="cta-button" href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=${hash}" target="_blank">Go to Form</a>
-      `;
-    } else {
-      content.innerHTML = `
-        <h1>Welcome to Nischay</h1>
-        <p>Please select a section or location from the menu above.</p>
-      `;
+    function renderContent() {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      if (validPaths[hash]) {
+        content.innerHTML = `
+          <h1>${validPaths[hash]}</h1>
+          <p>Click the button below to go to the Intake Form.</p>
+          <a class="cta-button" href="https://power-innovation-8457--developer.sandbox.my.site.com/pentusHealthPortal?utm_location=${hash}" target="_blank">Go to Form</a>
+        `;
+      } else {
+        content.innerHTML = `
+          <h1>Welcome to Nischay</h1>
+          <p>Please select a section or location from the menu above.</p>
+        `;
+      }
     }
-  }
 
-  // Load content on initial load
-  window.addEventListener('load', renderContent);
-
-  // Listen to hash change (for when user clicks)
-  window.addEventListener('hashchange', renderContent);
-</script>
-
+    window.addEventListener('load', renderContent);
+    window.addEventListener('hashchange', renderContent);
+  </script>
 </body>
 </html>
